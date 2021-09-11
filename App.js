@@ -1,15 +1,33 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-export default function App() {
+import indexScreen from './src/screens/indexScreen';
+import { BlogProvider } from './src/context/BlogContext';
+
+const Stack = createStackNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <SafeAreaProvider>
+        <Stack.Navigator initialRouteName='Index'>
+          <Stack.Screen name='Index' component={indexScreen} />
+        </Stack.Navigator>
+      </SafeAreaProvider>
+    </NavigationContainer>
   );
-}
+};
+
+export default () => {
+  return (
+    <BlogProvider>
+      <App />
+    </BlogProvider>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
