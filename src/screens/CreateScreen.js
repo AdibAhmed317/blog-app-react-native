@@ -15,14 +15,12 @@ const CreateScreen = ({ navigation }) => {
   const { addBlogPost } = useContext(Context);
   return (
     <View>
-      {/* <Text style={styles.label}>Enter Title: </Text> */}
       <TextInput
         style={styles.title}
         placeholder='Title'
         value={title}
         onChangeText={text => setTitle(text)}
       />
-      {/* <Text style={styles.label}>Enter Title: </Text> */}
       <TextInput
         style={styles.content}
         placeholder='Note'

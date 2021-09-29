@@ -9,6 +9,7 @@ import { Feather, EvilIcons } from '@expo/vector-icons';
 import indexScreen from './src/screens/indexScreen';
 import ShowScreen from './src/screens/ShowScreen';
 import CreateScreen from './src/screens/CreateScreen';
+import EditScreen from './src/screens/EditScreen';
 
 const Stack = createStackNavigator();
 
@@ -38,14 +39,15 @@ const App = () => {
           <Stack.Screen
             name='Show'
             component={ShowScreen}
-            // options={{
-            //   title: 'Show Note',
-            //   headerTitleAlign: 'center',
-            //   justifyContent: 'center',
-            // }}
             options={({ navigation }) => ({
               headerRight: () => (
-                <TouchableOpacity onPress={() => navigation.navigate('Create')}>
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate('Edit', {
+                      id: navigation.getParam('id'),
+                    })
+                  }
+                >
                   <EvilIcons
                     style={{ margin: 5, justifyContent: 'center' }}
                     name='pencil'
@@ -62,6 +64,11 @@ const App = () => {
             name='Create'
             component={CreateScreen}
             options={{ title: 'Create Note', headerTitleAlign: 'center' }}
+          />
+          <Stack.Screen
+            name='Edit'
+            component={EditScreen}
+            options={{ title: 'Edit Note', headerTitleAlign: 'center' }}
           />
         </Stack.Navigator>
       </SafeAreaProvider>
